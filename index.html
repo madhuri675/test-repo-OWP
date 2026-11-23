@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Expense Tracker</title>
+    <meta
+      name="description"
+      content="A simple expense tracker that keeps your expenses in this browser."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Expense Tracker</h1>
+      <p class="tagline">
+        Add what you spend and see the running total. Everything is saved in this browser only.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="card" aria-labelledby="add-heading">
+        <h2 id="add-heading">Add an expense</h2>
+
+        <form id="expense-form" novalidate>
+          <div class="field">
+            <label for="description">Description</label>
+            <input
+              id="description"
+              name="description"
+              type="text"
+              maxlength="80"
+              autocomplete="off"
+              placeholder="Coffee with the team"
+              aria-describedby="description-error"
+            />
+            <p class="error" id="description-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="amount">Amount</label>
+            <input
+              id="amount"
+              name="amount"
+              type="text"
+              inputmode="decimal"
+              autocomplete="off"
+              placeholder="12.50"
+              aria-describedby="amount-error"
+            />
+            <p class="error" id="amount-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category" aria-describedby="category-error">
+              <option value="">Choose a category</option>
+            </select>
+            <p class="error" id="category-error"></p>
+          </div>
+
+          <button type="submit" class="primary-button">Add expense</button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="list-heading">
+        <div class="list-header">
+          <h2 id="list-heading">Expenses</h2>
+          <p class="total">Total <span id="total-amount">0.00</span></p>
+        </div>
+
+        <p class="empty-state" id="empty-state">No expenses yet. Add your first one above.</p>
+
+        <div class="table-wrapper">
+          <table id="expense-table" hidden>
+            <caption class="visually-hidden">Your expenses, newest first</caption>
+            <thead>
+              <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Category</th>
+                <th scope="col" class="amount-column">Amount</th>
+                <th scope="col"><span class="visually-hidden">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="expense-list"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>Saved locally in this browser. Clearing your browser data removes your expenses.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
